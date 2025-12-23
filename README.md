@@ -113,14 +113,15 @@ Dilakukan input data ke database relasional yaitu MySQL.
 │ ├── input_data.ipynb
 │ └── query_create_database.sql
 ├── screenshoot-image/
-│ └── dashboard.jpg
+│ ├── dashboard.png
+│ ├── dashboard2.png
+│ └── dashboard3.png
 ├── use-data-fromSQL/
 │ └── EDA.ipynb
 ├── .env
 ├── .gitignore
 └── README.md
 ```
-
 
 ---
 
@@ -158,7 +159,9 @@ Dilakukan input data ke database relasional yaitu MySQL.
 ---
 
 ## Screenshoot Dashboard Excel
-
+![Screenshoot 1](/screenshoot-image/dashboard.png)
+![Screenshoot 2](/screenshoot-image/dashboard2.png)
+![Screenshoot 3](/screenshoot-image/dashboard3.png)
 
 
 ## 👤 Penulis
