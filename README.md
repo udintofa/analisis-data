@@ -1,10 +1,12 @@
 # 📊 Analisis Data Penjualan – Food & Beverage
 
 ## 📌 Gambaran Proyek
-Proyek ini bertujuan untuk melakukan **Exploratory Data Analysis (EDA)** pada data transaksi penjualan makanan dan minuman.  
+Proyek ini bertujuan untuk melakukan analisis data dan **Exploratory Data Analysis (EDA)** pada data transaksi penjualan makanan dan minuman di Rumah Makan Balaji Food. Data diperoleh dari Kaggle dengan tautan berikut [dataset](https://www.kaggle.com/datasets/ahmedhalimo/balaji-fast-food-sales?select=Balaji+Fast+Food+Sales.csv).  
 Analisis dilakukan untuk memahami pola penjualan, mengidentifikasi produk terlaris, melihat tren penjualan berdasarkan waktu, serta menggali insight bisnis yang dapat digunakan sebagai dasar pengambilan keputusan.
 
-Proses analisis dilakukan menggunakan **Python (Pandas & Matplotlib)** dengan pendekatan analisis yang selaras dengan **workflow SQL**.
+Proses analisis dimulai dengan mengunduh dataset yang terdapat pada tautan diatas. Selanjutnya, dilakukan penilaian pada data dan pembersihan data menggunakan jupyter notebook. Agar dataset dapat diakses melalui semua platform, dilakukan input datase ke database MySQL yang terdapat di lokal komputer. Proses penilaian, pembersihan, dan penginputan ke database dilakukan pada notebook yang terdapat pada `/input-data-toSQL/input_data.ipynb`.
+
+Proses berikutnya adalah dilakukannya EDA (Exploratory Data Analysis) pada data dengan memanfaatkan database yang sudah terinput dataset Rumah Makan Balaji Food. Dilakukan pengambilan data dari database MySQL menggunakan library `pymsql` & `sqlalchemy`. Lalu dilakukan EDA dengan penjelasan yang lebih lengkap di bagian selanjutnya. Setelah dilakukan EDA, dataset yang berbentuk `pandas` diexport menggunakan library tersebut menjadi file excel, yaitu pada `/data-cleaned/sales.xlsx`. Pada file excel tersebut selanjutnya dilakukan pembuatan dashboard interaktif yang dapat memudahkan pembaca membaca isi dari tabel.
 
 ---
 
@@ -31,33 +33,47 @@ Beberapa langkah pembersihan data yang dilakukan:
 - Mengonversi kolom `order_date` ke format datetime
 - Menstandarkan data teks dengan menghapus spasi berlebih
 - Menangani nilai kosong pada kolom `transaction_type` dengan label **"Unknown"**
-- Membuat fitur tambahan berbasis waktu (misalnya kolom `month`) untuk analisis tren
+
+---
+
+## Input Data ke Database Relasional (MySQL)
+Dilakukan input data ke database relasional yaitu MySQL.
+- Membuat database baru sebagai wadah untuk projek dan menyiapkan tabel dengan query pada file `\input-data-toSQL\query_create_database.sql`
+- Membuat engine untuk koneksi ke database server menggunakan library `pymsql` & `sqlalchemy`
+- Menginput dataset menggunakan engine
 
 ---
 
 ## 🔍 Exploratory Data Analysis (EDA)
 
-### 1️⃣ Gambaran Umum Penjualan
+### Menginput Dataset dari Database MySQL
+- Membuat engine untuk koneksi ke database server menggunakan library `pymsql` & `sqlalchemy`
+- Mengambil data menggunakan engine
+
+### Menilai Data dan Membersihkan Data
+- Menilai data seperti data duplikasi, data kosong, dll
+- Transformasi data pada kolom `order_date` ke tipe data datetime karena bentuk tipe data datetime pada pandas dan MySQL berbeda
+
+### Gambaran Umum Penjualan
 - Jumlah total transaksi
 - Total pendapatan
-- Rentang waktu transaksi
+- Rata-rata pendapatan per order
 
-### 2️⃣ Analisis Produk
+### Analisis Produk
 - Produk dengan jumlah transaksi terbanyak
 - Produk dengan total pendapatan tertinggi
 - Perbandingan performa Fastfood dan Beverages
 
-### 3️⃣ Analisis Waktu
+### Analisis Waktu
 - Pola penjualan berdasarkan waktu transaksi
 - Tren penjualan bulanan menggunakan agregasi total transaksi
 
-### 4️⃣ Analisis Metode Pembayaran
+### Analisis Metode Pembayaran
 - Distribusi transaksi Cash dan Online
 - Kontribusi pendapatan berdasarkan metode pembayaran
 
-### 5️⃣ Perilaku Pembelian
-- Distribusi jumlah pembelian per transaksi
-- Hubungan antara harga produk, kuantitas, dan total transaksi
+### Export Data ke Excel
+- Melakukan export data dalam bentuk excel menggunakan library pandas pada lokasi `data-cleaned/sales.xlsx`
 
 ---
 
@@ -69,30 +85,81 @@ Beberapa langkah pembersihan data yang dilakukan:
 
 ---
 
+## Melakukan Pembuatan Dashboard dengan Microsoft Excel
+- Membuat `pivot table` untuk informasi yang diperlukan
+- Membuat `pivot chart` untuk memperjelas informasi dalam data
+- Menggabungkan semua `chart` dalam satu dashboard
+- Menambahkan `slicer` dan `timeline` untuk membuat dashboard lebih interaktif
+
+---
+
 ## 🛠 Tools & Teknologi
-- **Python**: Pandas, Matplotlib
-- **Jupyter Notebook** untuk analisis dan visualisasi
-- **Pendekatan SQL** untuk logika agregasi dan analisis data
-- **Excel-ready output** untuk keperluan dashboard
+- **Python**: Pandas, Matplotlib, sqlalchemy, pymysql, dan seaborn
+- **Jupyter Notebook** untuk koneksi database, cleaning, analisis, dan visualisasi data
+- **MySQL** untuk menyimpan data dalam bentuk database server
+- **Excel** untuk keperluan dashboard interaktif
 
 ---
 
 ## 📁 Struktur Proyek
+```
 ├── data/
-│ └── sales_data.csv
-├── notebook/
-│ └── sales_eda.ipynb
-├── README.md
+│ └── sales.csv
+├── data-cleaned/
+│ └── sales.xlsx
+├── excel-analysis/
+│ └── sales.xlsx
+├── input-data-toSQL/
+│ ├── input_data.ipynb
+│ └── query_create_database.sql
+├── screenshoot-image/
+│ └── dashboard.jpg
+├── use-data-fromSQL/
+│ └── EDA.ipynb
+├── .env
+├── .gitignore
+└── README.md
+```
 
 
 ---
 
-## 🚀 Pengembangan Selanjutnya
-- Menambahkan analisis berbasis SQL untuk replikasi EDA
-- Membuat dashboard interaktif menggunakan Excel atau Power BI
-- Analisis tren dan musiman yang lebih mendalam
+## 📂 Penjelasan Folder & File
+
+- `data/`  
+  Berisi **data mentah (raw data)** dalam format CSV yang belum dilakukan pembersihan.
+
+- `data-cleaned/`  
+  Berisi data yang sudah melalui proses **cleaning dan penyesuaian format**, disimpan dalam bentuk Excel.
+
+- `excel-analysis/`  
+  Berisi analisis dan ringkasan data menggunakan **Excel**, termasuk pivot table atau dashboard sederhana.
+
+- `input-data-toSQL/`  
+  Berisi proses **memasukkan data ke database SQL**, terdiri dari:
+  - `input_data.ipynb` → notebook untuk upload data ke database
+  - `query_create_database.sql` → query pembuatan database dan tabel
+
+- `screenshoot-image/`
+  Berisi screenshoot hasil dashboard excel yang sudah jadi.
+
+- `use-data-fromSQL/`  
+  Berisi **analisis data (EDA)** menggunakan data yang diambil langsung dari database SQL.
+
+- `.env`  
+  Menyimpan konfigurasi sensitif seperti **credential database**. (tidak diupload ke github)
+
+- `.gitignore`  
+  Mengatur file atau folder yang tidak diikutkan ke repository.(tidak diupload ke github)
+
+- `README.md`  
+  Dokumentasi proyek.
 
 ---
+
+## Screenshoot Dashboard Excel
+
+
 
 ## 👤 Penulis
 **Muchammad Udin Mustofa**
