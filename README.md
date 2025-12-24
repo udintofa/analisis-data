@@ -1,4 +1,4 @@
-# 📊 Analisis Data Penjualan – Food & Beverage
+# 📊 Analisis Data Penjualan – Food & Beverage Balaji Fast Food
 
 ## 📌 Gambaran Proyek
 Proyek ini bertujuan untuk melakukan analisis data dan Exploratory Data Analysis (EDA) pada data transaksi penjualan makanan dan minuman di Rumah Makan Balaji Food. Dataset diperoleh dari Kaggle dan digunakan untuk memahami pola penjualan, mengidentifikasi produk terlaris, serta menganalisis tren penjualan sebagai dasar pengambilan keputusan bisnis.
@@ -40,7 +40,7 @@ Beberapa langkah pembersihan data yang dilakukan:
 
 ---
 
-## Input Data ke Database Relasional (MySQL)
+## :file_folder: Input Data ke Database Relasional (MySQL)
 Dilakukan input data ke database relasional yaitu MySQL.
 - Membuat database baru sebagai wadah untuk projek dan menyiapkan tabel dengan query pada file `\input-data-toSQL\query_create_database.sql`
 - Membuat engine untuk koneksi ke database server menggunakan library `pymsql` & `sqlalchemy`
@@ -91,7 +91,7 @@ Dilakukan input data ke database relasional yaitu MySQL.
 
 ---
 
-## Melakukan Pembuatan Dashboard dengan Microsoft Excel
+## :bar_chart: Melakukan Pembuatan Dashboard dengan Microsoft Excel
 - Membuat `pivot table` untuk informasi yang diperlukan
 - Membuat `pivot chart` untuk memperjelas informasi dalam data
 - Menggabungkan semua `chart` dalam satu dashboard
@@ -170,5 +170,10 @@ Dilakukan input data ke database relasional yaitu MySQL.
 ![Screenshoot 3](/screenshoot-image/dashboard3.png)
 
 
-## 👤 Penulis
-**Muchammad Udin Mustofa**
+## ✍️ Penulis
+Muchammad Udin Mustofa
+
+## 📬 Kontak
+- Email: udintofa07@gmail.com
+- GitHub: [Github](https://github.com/udintofa)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/muchammad-udin-mustofa-b5826422b/)
