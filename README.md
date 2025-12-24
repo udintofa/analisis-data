@@ -1,16 +1,20 @@
 # 📊 Analisis Data Penjualan – Food & Beverage
 
 ## 📌 Gambaran Proyek
-Proyek ini bertujuan untuk melakukan analisis data dan **Exploratory Data Analysis (EDA)** pada data transaksi penjualan makanan dan minuman di Rumah Makan Balaji Food. Data diperoleh dari Kaggle dengan tautan berikut [dataset](https://www.kaggle.com/datasets/ahmedhalimo/balaji-fast-food-sales?select=Balaji+Fast+Food+Sales.csv).  
-Analisis dilakukan untuk memahami pola penjualan, mengidentifikasi produk terlaris, melihat tren penjualan berdasarkan waktu, serta menggali insight bisnis yang dapat digunakan sebagai dasar pengambilan keputusan.
+Proyek ini bertujuan untuk melakukan analisis data dan Exploratory Data Analysis (EDA) pada data transaksi penjualan makanan dan minuman di Rumah Makan Balaji Food. Dataset diperoleh dari Kaggle dan digunakan untuk memahami pola penjualan, mengidentifikasi produk terlaris, serta menganalisis tren penjualan sebagai dasar pengambilan keputusan bisnis.
 
-Proses analisis dimulai dengan mengunduh dataset yang terdapat pada tautan diatas. Selanjutnya, dilakukan penilaian pada data dan pembersihan data menggunakan jupyter notebook. Agar dataset dapat diakses melalui semua platform, dilakukan input datase ke database MySQL yang terdapat di lokal komputer. Proses penilaian, pembersihan, dan penginputan ke database dilakukan pada notebook yang terdapat pada `/input-data-toSQL/input_data.ipynb`.
+Proses analisis meliputi data assessment, data cleaning, dan preprocessing menggunakan Python (Jupyter Notebook). Dataset yang telah dibersihkan kemudian disimpan ke dalam database MySQL agar dapat diakses secara terstruktur.
 
-Proses berikutnya adalah dilakukannya EDA (Exploratory Data Analysis) pada data dengan memanfaatkan database yang sudah terinput dataset Rumah Makan Balaji Food. Dilakukan pengambilan data dari database MySQL menggunakan library `pymsql` & `sqlalchemy`. Lalu dilakukan EDA dengan penjelasan yang lebih lengkap di bagian selanjutnya. Setelah dilakukan EDA, dataset yang berbentuk `pandas` diexport menggunakan library tersebut menjadi file excel, yaitu pada `/data-cleaned/sales.xlsx`. Pada file excel tersebut selanjutnya dilakukan pembuatan dashboard interaktif yang dapat memudahkan pembaca membaca isi dari tabel.
+Selanjutnya, dilakukan EDA dengan mengambil data langsung dari MySQL menggunakan pymysql dan sqlalchemy. Hasil analisis diekspor ke format Excel dan digunakan untuk membuat dashboard interaktif yang memudahkan visualisasi dan pemahaman insight penjualan.
 
 ---
 
 ## 🗂 Deskripsi Dataset
+Dataset yang digunakan dalam proyek ini merupakan data transaksi penjualan Balaji Fast Food yang diperoleh dari Kaggle. Dataset berisi informasi penjualan makanan dan minuman, seperti nama produk, kategori, harga, jumlah terjual, serta waktu transaksi, yang digunakan untuk analisis pola dan tren penjualan.
+
+Dataset dapat diunduh melalui tautan berikut:
+👉 [dataset](https://www.kaggle.com/datasets/ahmedhalimo/balaji-fast-food-sales)
+
 Dataset terdiri dari **1.000 data transaksi** dengan kolom sebagai berikut:
 
 | Kolom | Deskripsi |
@@ -45,6 +49,7 @@ Dilakukan input data ke database relasional yaitu MySQL.
 ---
 
 ## 🔍 Exploratory Data Analysis (EDA)
+  Melakukan Exploratory Data Analysis pada file `/use-data-fromSQL/EDA.ipynb`
 
 ### Menginput Dataset dari Database MySQL
 - Membuat engine untuk koneksi ke database server menggunakan library `pymsql` & `sqlalchemy`
@@ -78,10 +83,11 @@ Dilakukan input data ke database relasional yaitu MySQL.
 ---
 
 ## 📈 Insight Utama
-- Beberapa produk memiliki kontribusi pendapatan yang tinggi meskipun jumlah transaksinya tidak paling banyak
-- Penjualan cenderung lebih tinggi pada malam hari dibandingkan waktu lainnya
-- Metode pembayaran online memberikan kontribusi signifikan terhadap total pendapatan
-- Produk Fastfood mendominasi jumlah transaksi, sedangkan Beverages memiliki harga rata-rata yang lebih tinggi
+- Jumlah order yang dimiliki oleh keenam produk cukup berimbang, tidak memiliki berbedaan signifikan, bisa disimpulkan penjualan per produknya cukup merata
+- Pembelian pada pembagian jenis waktu juga cukup berimbang, baik pagi, siang, sore, malam, dan tengah malam tidak terdapat perbedaan signifikan antara mereka
+- Penjualan jenis fastfood cenderung lebih tinggi dari pada beverage dengan total 68% dibanding 32%
+- Tren pendapatan cenderung naik dari bulan ke bulan, walaupun terdapat beberapa bulan dimana pendapatan mengalami penurunan yaitu bulan Juni, September, Novermber 2022 dan Februari, Maret 2023
+- Penerimaan dengan metode tunai sedikit lebih tinggi daripada penerimaan dengan metode pembayaran online
 
 ---
 
@@ -96,8 +102,8 @@ Dilakukan input data ke database relasional yaitu MySQL.
 ## 🛠 Tools & Teknologi
 - **Python**: Pandas, Matplotlib, sqlalchemy, pymysql, dan seaborn
 - **Jupyter Notebook** untuk koneksi database, cleaning, analisis, dan visualisasi data
-- **MySQL** untuk menyimpan data dalam bentuk database server
-- **Excel** untuk keperluan dashboard interaktif
+- **MySQL** untuk menyimpan data dalam bentuk database server dan menggunakan MySQL Workbench sebagai client database
+- **Excel** untuk membuat tabel pivot dan keperluan dashboard interaktif
 
 ---
 
